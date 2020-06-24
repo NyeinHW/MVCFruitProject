@@ -1,0 +1,69 @@
+﻿
+@using MVCFruitStore.Models;
+
+@{
+    ViewData["Title"] = "Reviews";
+    var route = ViewData["Route"];
+    var userid = TempData["userid"];
+    var reviewProd = ViewBag.revproduct;
+    List<Review> reviews = (List<Review>) ViewData["reviews"];
+    var emptyRev = ViewData["empty"];
+}
+
+
+
+<h1>Reviews</h1>
+<head>
+</head>
+<body>
+    <div class="review_header">
+        <div class="review_view">
+            <div class="review_view_ele1">
+                <u><a href="~/@route">Continue Shopping</a></u>
+                &nbsp;| &nbsp;
+                <u><a href="~/Cart/Checkout?userid=@userid">Check Out</a></u>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-section">
+
+            <div class="reviewsproduct-card">
+                <img class="card-img-top img-size" src="~/image/@reviewProd.Image" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@reviewProd.Name</h5>
+
+                    <h5 class="card-title pricedisp">$ @reviewProd.Price</h5>
+                    <p class="card-text">@reviewProd.Description</p>
+                    <hr class="pname-line" />
+                </div>
+
+                <div class="card-footer product_footer">
+                    <form method="POST">
+                        @*<input type="submit" value="Add To Cart" class="btn btn-light" formaction="/Cart/AddToCart/?productid=@p.Id&&_userid=@userid" />*@
+                        <button value="Add To Cart" formaction="/Cart/AddToCart/?productid=@reviewProd.Id&&_userid=@userid" style="color:white;" class="submit-btn"> Add To Cart</button>
+                    </form>
+                </div>
+            </div>
+
+
+        <div class="reviews-body">
+
+            @foreach (var r in reviews)
+            {
+                <div class="review-card">
+                    <span class="reviewer-name">@r.ReviewUser.Name</span>
+                    <span class="reviewer-name">@r.ReviewUser.LastName </span>
+                    <span>says</span>
+                    <p style="font-size:11px">"<i>@r.ReviewText</i>"</p>
+                </div>
+            }
+
+            @if(reviews.Count == 0)
+            {
+            <p textalign="center" color="gray"><b>Sorry, no reviews yet.</b></p>
+            }
+        </div>
+    </div>
+
+</body>

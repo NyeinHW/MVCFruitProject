@@ -1,0 +1,87 @@
+﻿
+@using MVCFruitStore.Models;
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+@{
+    var name = ViewData["name"];
+    var userid = TempData["userid"];
+    List<Item> citems = (List<Item>)ViewData["items"];
+    var sessionId = ViewData["sessionId"];
+    var route = ViewData["Route"];
+}
+
+@{
+    double totalPrice = 0;
+    foreach (var c in citems)
+    {
+        totalPrice += c.ProductPrice * c.ProductQty;
+    }
+}
+
+<div class="cart_header">
+    <div class="cart_view">
+        <h4>Your Cart</h4>
+        <br />
+        <div class="cart_view_ele1">
+            <u><a href="~/@route">Continue Shopping</a></u>
+            @if (userid != null)
+            {
+                @:&nbsp;| &nbsp;
+                <u><a href="~/MyPurchase/ViewPurchase?userid=@userid">My Purchases</a></u>
+            }
+            &nbsp;| &nbsp;
+            <u><a href="~/Cart/Checkout?userid=@userid">Check Out</a></u>
+        </div>
+
+        <div>
+            <div class="cart_view_ele2">
+                <h6 style="color:darkgray">Cart Total:</h6> &nbsp;
+                <text id="totalPrice">
+                    $@totalPrice.ToString("#.00")
+                </text>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<head>
+    <link href="~/css/site.css" type="text/css" />
+    <link href="~/js/site.js" type="text/javascript" />
+</head>
+<body>
+    <div class="cart-page">
+            <div class="maincartbody">
+                @foreach (var c in citems)
+                {
+                <div class="card cart-card">
+                    <img class="card-img-top img-size" src="~/image/@c.ProductImage" alt="Card image cap">
+                    <div class="right-cart">
+                        <h5 class="cart-title">@c.ProductName</h5>
+                        <p>@c.ProductDesc</p>
+                        <h5 class="cart-title pricedisp">$ @c.ProductPrice.ToString("#.00")</h5>
+                    </div>
+
+                    <div class="left-cart cart_prod_price ">
+                        @using (Html.BeginForm("UpdateQty", "Cart"))
+                        {
+                            <input type="hidden" id="productid" name="productId" value=@c.ProductId />
+                            <input type="hidden" class="pPrice" id="product_@c.ProductId" value="@c.ProductPrice" />
+                            <input type="hidden" id="sessionid" name="sessionId" value=@sessionId />
+                            <p style="font-size:12px;"> Quantity:<input type="number" class="updateCart Quantity" placeholder="@c.ProductQty" min="0" max="10" step="1" name="newQty" value="@c.ProductQty" /></p>
+                            <input type="submit" class="submit-btn" id="submitchanges" value="Update" />
+                        }
+                    </div>
+                </div>
+                }
+
+            </div>
+
+
+        </div>
+
+   
+
+</body>

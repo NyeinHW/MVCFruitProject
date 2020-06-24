@@ -1,0 +1,285 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+color: darkblue;
+}
+
+btn-link {
+    border: 2px solid gray;
+    color: gray;
+    text-align: center;
+    font-family: arial;
+    font-size: 12px;
+    padding: 10px 10px;
+    display: inline-block;
+    margin: 4px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: darkgray;
+}
+
+.submit-btn {
+    height: 30px;
+    width: 90px;
+    border: 3px;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    color: white;
+    font-size: 12px;
+    margin: auto;
+    display: block;
+}
+
+
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product_card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 290px;
+    min-height: 350px;
+    margin: auto;
+    font-family: arial;
+    text-align: center;
+    padding: 2%;
+    margin-bottom: 2%
+}
+
+.card-title{
+    font-weight: bold;
+    font-size:17px;
+}
+
+.cart-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 290px;
+    min-height: 350px;
+    font-family: arial;
+    text-align: center;
+    padding: 2%;
+    margin-bottom: 2%
+}
+.pname-line{
+    width:90px;
+    color: darkgray;
+    margin: auto;
+}
+
+.pricedisp{
+    color:mediumaquamarine;
+}
+.card-body p {
+    font-size: 12px;
+}
+
+
+.img-size {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.product_footer {
+    border-top: none !important;
+    background-color: white;
+}
+
+.label_contain {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label_ele2 {
+    display: flex;
+}
+
+.label_ele1 {
+    display: flex;
+}
+
+.cart_view {
+    display: flex;
+    justify-content: space-between;
+    justify-items: baseline;
+    margin-bottom: 2rem;
+}
+
+.cart_view > div {
+        display: flex;
+    }
+
+#totalPrice {
+    font-weight: bold;
+}
+
+.cart_price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart_prod_price > form {
+    display: flex;
+}
+
+.purchase_header {
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.circle-out {
+    float: right;
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.circle-in {
+    float: right;
+    height: 30px;
+    font-size: 12px;
+    margin: 5px 6px 5px 6px;
+}
+
+.img-cart {
+    height: 30px;
+    width: 30px;
+    float: right;
+}
+
+#submitchanges{
+    font-size: 13px;
+}
+
+.submitchanges {
+    margin-bottom: 10%;
+    margin-left: 1%;
+    border: none;
+}
+
+.review-card {
+    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-bottom: 1px, solid, gray;
+    padding: 16px;
+    margin: 16px 0;
+    width: inherit;
+    float: left;
+}
+
+.view-btn {
+    height: 30px;
+    width: 90px;
+    border: 3px;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 12px;
+    margin: auto;
+    display: block;
+}
+
+.reviewsproduct-card {
+    float: left;
+    width: 30%;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 290px;
+    min-height: 350px;
+    font-family: arial;
+    text-align: center;
+    padding: 2%;
+    margin-bottom: 2%
+}
+
+.reviews-body {
+    float: left;
+    padding: 20px;
+    width: 70%;
+}
+
+.review-section:after {
+    content:"";
+    display: table;
+    clear: both;
+}
+
+.reviewer-name{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#ReviewBox {
+    width: 90%;
+    height: 50px;
+    margin: auto;
+}

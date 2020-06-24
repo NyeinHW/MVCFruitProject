@@ -1,0 +1,8 @@
+﻿#login_error_msg {
+    color: red;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}

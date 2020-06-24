@@ -1,0 +1,33 @@
+﻿@model MVCFruitStore.Models.User;
+@{
+    ViewData["Title"] = "Index";
+}
+<html>
+<head>
+    <link href="~/CSS/UserLogin.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="login">
+    <h1>IndexUsers </h1>
+    @using (Html.BeginForm("Login", "Users", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>@Html.LabelFor(x => x.Name)</td>
+                <td>@Html.TextBoxFor(x => x.Name)</td>
+                <td>@Html.ValidationMessageFor(x => x.Name, "", new { style = "color:red" })</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button>Login</button>
+                <td>
+            </tr>
+        </table>
+    }
+</body>
+</html>

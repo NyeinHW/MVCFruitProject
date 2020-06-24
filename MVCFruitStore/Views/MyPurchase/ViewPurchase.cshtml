@@ -1,0 +1,88 @@
+﻿@using MVCFruitStore.Models;
+
+@{
+    ViewData["Title"] = "ViewPurchase";
+}
+
+@{
+    var lists = (List<AllItems>)ViewData["allItems"];
+    var orderDetails = (List<Order_Detail>)ViewData["activationCode"];
+    var userid = TempData["userid"];
+
+}
+
+<div class="cart_header purchase_header">
+    <h6>My Purchase</h6>&nbsp;&nbsp;
+    <a href="~/Product/ViewProducts?userid=@userid">Home</a>
+    &nbsp;|&nbsp;
+    <a href="~/Home/Logout">Logout</a>
+</div>
+<head>
+    <link href="~/css/site.css" type="text/css" />
+    <link href="~/js/site.js" type="text/javascript" />
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<div class="main">
+    <table align="left">
+
+        @foreach (var c in lists)
+        {
+            <tr>
+                <td width="50%">
+                    <div class="card product_card">
+                        <img class="card-img-top img-size" src="~/image/@c.ProductImage" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">@c.ProductName</h5>
+                            <h5 class="card-title">$ @c.ProductPrice</h5>
+                            <p>@c.ProductDesc</p>
+                            <button class="btn-sm btn-light" onclick="downloadPruchase()">Download</button>
+
+                            <hr class="pname-line" />
+
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+                <td>
+                    <div>
+                        <h6>Purchase Date: @c.DateAndTime</h6>
+                        <h6>Quantity : @c.ProductQty</h6>
+                        <h6>
+                            Activation Code:
+                            <select>
+                                @foreach (var d in orderDetails)
+                                {
+                                    @if (d.ProductId == c.ProductId)
+                                    {
+                                        <option>@d.ActivationCode</option>
+                                    }
+                                }
+                            </select>
+                        </h6>
+                    </div>
+                    
+                    @using (Html.BeginForm("WriteReview", "Product"))
+                    {
+                        <input type="hidden" id="ProductId" name="ProductId" value=@c.ProductId />
+                        <input type="hidden" id="ReviewerId" name="ReviewerId" value=@userid />
+                        <input type="text" name="ReviewText" placeholder="Review goes here..." id="ReviewBox"
+                               style="
+                                height: 75.98438px;
+                            ">
+                        <input type="submit" class="submit-btn" id="submitchanges" value="Add Review" 
+                               style="
+                                    margin-left: 0px;
+                                    margin-top: 10px;
+                                    width: 93.992188px;
+                                    height: 43.992188px;
+
+                                ">
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+        
+</div>
+

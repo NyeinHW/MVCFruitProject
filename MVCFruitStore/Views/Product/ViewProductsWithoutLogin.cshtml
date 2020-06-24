@@ -1,0 +1,63 @@
+﻿@using MVCFruitStore.Models;
+
+@{
+    ViewData["Title"] = "ViewProductsWithoutLogin";
+}
+@{
+    List<Product> products = (List<Product>)ViewData["products"];
+    var countItems = ViewData["qty"];
+    var sessionid = ViewData["sessionid"];
+}
+
+
+<head>
+    <link href="~/css/site.css" type="text/css" />
+</head>
+<div class="label_contain">
+    <div class="label_ele1">
+        <p>Hello Guest! Welcome to MVC Fresh Fruits.</p>
+    </div>
+    <div class="label_ele2">
+        <a href="~/Cart/ViewCart?sessionid=@sessionid">
+            <img style="height:30px; width:30px; float:right;" src="~/image/cart.png" />
+        </a>
+        &nbsp;
+        <span style="float:right; height:30px;width:30px;border:1px solid black;border-radius:50%;background-color:gainsboro">
+            <span style="float:right; height:30px;font-size:12px;margin:5px 6px 5px 6px">
+                @countItems
+            </span>
+        </span>&nbsp;&nbsp;
+        <a href="~/Home/Login">Login</></a>
+     
+    </div>
+</div>
+<form asp-controller="Product" asp-action="Search" method="POST">
+    <p>
+
+        <input type="text" name="SearchString" placeholder="Search...">
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<div class="main">
+
+
+    @foreach (var p in products)
+    {
+    <div class="card product_card">
+        <img class="card-img-top img-size" src="~/image/@p.Image" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@p.Name</h5>
+            <h5 class="card-title pricedisp">$ @p.Price.ToString("0.00")</h5>
+            <p class="card-text">@p.Description</p>
+            <hr class="pname-line" />
+        </div>
+        <form method="POST">
+            <input type="submit" value="Add To Cart" class="submit-btn" formaction="/Cart/AddToCart/?productid=@p.Id" />
+        </form>
+        <br />
+        <form method="POST">
+            <button formaction="/Product/ViewReviews/?productid=@p.Id" class="view-btn" style="color:black;" font-size="12px;">Reviews</button>
+        </form>
+    </div>
+    }
+</div>

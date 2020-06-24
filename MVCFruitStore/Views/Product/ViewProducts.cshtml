@@ -1,0 +1,81 @@
+﻿@using MVCFruitStore.Models;
+
+@{
+    ViewData["Title"] = "ViewProducts";
+}
+
+@{
+    ViewData["Title"] = "ViewProducts";
+}
+@{
+    List<Product> products = (List<Product>)ViewData["products"];
+}
+@{
+    var name = ViewData["name"];
+    var userid = TempData["userid"];
+    var countItems = ViewData["qty"];
+    var sessionId = ViewData["sessionId"];
+}
+
+<div class="label_contain">
+    <div class="label_ele1">
+        <p>Hello @name! Welcome back to MVC Fresh Fruits. </p>&nbsp; <br />
+        <span><a href="~/Mypurchase/ViewPurchase?userid=@userid">My Purchase</a></span>
+        &nbsp;|&nbsp;
+        <a href="~/Home/Logout">Logout</a>
+    </div>
+    <div class="label_ele2">
+        <a href="~/Cart/ViewCart?userid=@userid">
+            <img style="height:30px; width:30px; float:right;" src="~/image/cart.png" />
+        </a>
+        &nbsp;
+        <span style="float:right; height:30px;width:30px;border:1px solid black;border-radius:50%;background-color:gainsboro">
+            <span style="float:right; height:30px;font-size:12px;margin:5px 6px 5px 6px">
+                @countItems
+            </span>
+        </span>
+    </div>
+</div>
+
+
+<head>
+    <link href="~/css/site.css" type="text/css" />
+</head>
+
+<form asp-controller="Product" asp-action="Search" method="POST">
+    <p>
+        <input type="hidden" name="userName" value="@name" />
+        <input type="hidden" name="userid" value="@userid" />
+        <input type="text" name="SearchString" placeholder="Search...">
+        <input type="submit" value="Search"/>
+    </p>
+</form>
+
+<div class="main">
+
+    @foreach (var p in products)
+    {
+        <div class="card product_card">
+            <img class="card-img-top img-size" src="~/image/@p.Image" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@p.Name</h5>
+
+                <h5 class="card-title pricedisp">$ @p.Price.ToString("0.00")</h5>
+                <p class="card-text">@p.Description</p>
+                <hr class="pname-line" />
+            </div>
+            <div class="card-footer product_footer">
+                <form method="POST">
+                    @*<input type="submit" value="Add To Cart" class="btn btn-light" formaction="/Cart/AddToCart/?productid=@p.Id&&_userid=@userid" />*@
+                    <button value="Add To Cart" formaction="/Cart/AddToCart/?productid=@p.Id&&_userid=@userid" class="submit-btn">Add To Cart</button>
+                </form>
+                <br />
+                <form method="POST">
+                    <button value="Add To Cart" formaction="/Product/ViewReviews/?productid=@p.Id&&_userid=@userid" style="color:black;" font-size="12px;">Reviews</button>
+                </form>
+                </div>
+        </div>
+    }
+</div>
+
+
